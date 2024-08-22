@@ -18,10 +18,7 @@ import { VisUtil } from "../../v2/dom/VisUtil";
 
 export let aria_child_valid: Rule = {
     id: "aria_child_valid",
-    //context: "dom:*[role]",
-    //dependencies: ["Rpt_Aria_ValidRole"],
     context: "dom:*",
-    dependencies: ["aria_role_valid", "aria_descendant_valid"],
     help: {
         "en-US": {
             "group": "aria_child_valid.html",
@@ -39,9 +36,9 @@ export let aria_child_valid: Rule = {
         }
     },
     rulesets: [{
-        "id": ["IBM_Accessibility", "IBM_Accessibility_next", "WCAG_2_1", "WCAG_2_0", "WCAG_2_2"],
+        "id": ["IBM_Accessibility", "WCAG_2_1", "WCAG_2_0", "WCAG_2_2"],
         "num": ["1.3.1"],
-        "level": eRulePolicy.RECOMMENDATION,
+        "level": eRulePolicy.VIOLATION,
         "toolkitLevel": eToolkitLevel.LEVEL_ONE
     }],
     // TODO: ACT: Verify mapping
