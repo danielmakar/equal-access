@@ -43,8 +43,8 @@ export let element_id_unique: Rule = {
         }
     },
     rulesets: [{
-        "id": ["IBM_Accessibility", "IBM_Accessibility_next"],
-        "num": ["HTML"],
+        "id": ["IBM_Accessibility", "WCAG_2_1", "WCAG_2_0", "WCAG_2_2"],
+        "num": ["4.1.1"],
         "level": eRulePolicy.VIOLATION,
         "toolkitLevel": eToolkitLevel.LEVEL_THREE
     }],
@@ -69,7 +69,6 @@ export let element_id_unique: Rule = {
 
         let element = FragmentUtil.getById(ruleContext, id);
         let passed = element === ruleContext;
-        //return new ValidationResult(passed, [ruleContext], '', '', passed == true ? [] : [ruleContext.nodeName.toLowerCase(), id]);
         if (!passed) {
             return RuleFail("Fail_2", [ruleContext.nodeName.toLowerCase(), id]);
         } else {
