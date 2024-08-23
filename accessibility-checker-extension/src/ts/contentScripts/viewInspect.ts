@@ -171,53 +171,50 @@ type Overlays = { elem: HTMLDivElement, info: HTMLDivElement };
                       + (types[2] === 0 ? "" : ("<span style='white-space: nowrap'>" + recommendationImageText + recommendationText + "</span>"));
         //--------------------------------------------
         overlays.elem.style.pointerEvents = "unset";
-        if (await devtoolsController.getActivePanel() === "main") {
-            // JCH Need this
-        } else { 
-            // Set the common error information
-            overlays.info.innerHTML = (`
+
+        // Set the common error information
+        overlays.info.innerHTML = (`
 <div style="color:white;">
     <button aria-label="closes notification" title="closes notification" style="float:right;margin-left:.5rem;background-color:transparent;border:0">
         <svg focusable="false" preserveAspectRatio="xMidYMid meet" fill="white" width="16" height="16" viewBox="0 0 32 32" aria-hidden="true" class="cds--inline-notification__close-icon" xmlns="http://www.w3.org/2000/svg"><path d="M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"></path></svg>
     </button>
     ${typesText}
 </div>
+        `);
+        overlays.info.querySelector("button")?.addEventListener("click", _evt => {
+            hideOverlays();
+        })
+
+        if (noVisibleElement === true) {
+            // Selected element isn't visible
+            overlays.elem.innerHTML = (`
+<div style="color:black;">
+    <span style="margin-left:12px;margin-top:10px;display:flex;text-align:center">Selected issue<br>not visible</span>
+</div>
             `);
-            overlays.info.querySelector("button")?.addEventListener("click", _evt => {
-                hideOverlays();
-            })
 
-            if (noVisibleElement === true) {
-                // Selected element isn't visible
-                overlays.elem.innerHTML = (`
-    <div style="color:black;">
-        <span style="margin-left:12px;margin-top:10px;display:flex;text-align:center">Selected issue<br>not visible</span>
-    </div>
-                `);
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+        } else if (elemOffScreen === true) {
+            // Selected element is 'rendered', but offscreen
+            overlays.elem.innerHTML = (`
+<div style="color:black;">
+    <span style="margin-left:12px;margin-top:10px;display:flex;text-align:center">Selected issue <br>off screen</span>
+</div>
+            `);
 
-                window.scrollTo({
-                    top: 0,
-                    left: 0,
-                    behavior: 'smooth'
-                });
-            } else if (elemOffScreen === true) {
-                // Selected element is 'rendered', but offscreen
-                overlays.elem.innerHTML = (`
-    <div style="color:black;">
-        <span style="margin-left:12px;margin-top:10px;display:flex;text-align:center">Selected issue <br>off screen</span>
-    </div>
-                `);
-
-                window.scrollTo({
-                    top: 0,
-                    left: 0,
-                    behavior: 'smooth'
-                });    
-            } else {
-                // Selected element is on the screen
-                overlays.elem.innerHTML = "";
-                overlays.elem.style.pointerEvents = "none";
-            }
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });    
+        } else {
+            // Selected element is on the screen
+            overlays.elem.innerHTML = "";
+            overlays.elem.style.pointerEvents = "none";
         }
         overlays.info.querySelector("a")?.addEventListener("click", async () => {
             await devtoolsController.inspectPath(issue.path.dom);
