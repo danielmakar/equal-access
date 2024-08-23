@@ -47,8 +47,8 @@ export let input_label_exists: Rule = {
         }
     },
     rulesets: [{
-        "id": ["IBM_Accessibility", "IBM_Accessibility_next", "WCAG_2_1", "WCAG_2_0", "WCAG_2_2"],
-        "num": ["4.1.2"], /* remove 1.1.1 mapping, keep 4.1.2 */
+        "id": ["IBM_Accessibility", "WCAG_2_1", "WCAG_2_0", "WCAG_2_2"],
+        "num": ["3.3.2", "4.1.2"], /* remove 1.1.1 mapping, keep 4.1.2 */
         "level": eRulePolicy.VIOLATION,
         "toolkitLevel": eToolkitLevel.LEVEL_ONE
     }],
