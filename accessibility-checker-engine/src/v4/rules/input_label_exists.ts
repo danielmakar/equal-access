@@ -9,6 +9,8 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
+
+  Edited by Daniel Makarski (Line 52, 53)
 *****************************************************************************/
 
 import { Rule, RuleResult, RuleFail, RuleContext, RulePotential, RuleManual, RulePass, RuleContextHierarchy } from "../api/IRule";
@@ -48,7 +50,7 @@ export let input_label_exists: Rule = {
     },
     rulesets: [{
         "id": ["IBM_Accessibility", "WCAG_2_1", "WCAG_2_0", "WCAG_2_2"],
-        "num": ["3.3.2", "4.1.2"], /* remove 1.1.1 mapping, keep 4.1.2 */
+        "num": ["3.3.2", "4.1.2"], 
         "level": eRulePolicy.VIOLATION,
         "toolkitLevel": eToolkitLevel.LEVEL_ONE
     }],

@@ -9,6 +9,8 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
+
+  Edited by Daniel Makarski (Line 48, 49)
 *****************************************************************************/
 
 import { Rule, RuleResult, RuleFail, RuleContext, RulePotential, RuleManual, RulePass, RuleContextHierarchy } from "../api/IRule";
@@ -69,6 +71,7 @@ export let element_id_unique: Rule = {
 
         let element = FragmentUtil.getById(ruleContext, id);
         let passed = element === ruleContext;
+        //return new ValidationResult(passed, [ruleContext], '', '', passed == true ? [] : [ruleContext.nodeName.toLowerCase(), id]);
         if (!passed) {
             return RuleFail("Fail_2", [ruleContext.nodeName.toLowerCase(), id]);
         } else {

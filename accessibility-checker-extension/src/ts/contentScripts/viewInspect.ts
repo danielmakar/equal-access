@@ -12,6 +12,8 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
+
+  Edited by Daniel Makarski (Lines 177-182, 227)
 *****************************************************************************/
 
 import { getBGController } from "../background/backgroundController";
@@ -172,6 +174,12 @@ type Overlays = { elem: HTMLDivElement, info: HTMLDivElement };
         //--------------------------------------------
         overlays.elem.style.pointerEvents = "unset";
 
+        // Removed that condition to display error information in main tab
+        /*if (await devtoolsController.getActivePanel() === "main") {
+            // JCH Need this
+        } else {
+        */
+
         // Set the common error information
         overlays.info.innerHTML = (`
 <div style="color:white;">
@@ -216,6 +224,7 @@ type Overlays = { elem: HTMLDivElement, info: HTMLDivElement };
             overlays.elem.innerHTML = "";
             overlays.elem.style.pointerEvents = "none";
         }
+        //}
         overlays.info.querySelector("a")?.addEventListener("click", async () => {
             await devtoolsController.inspectPath(issue.path.dom);
             await devtoolsController.inspectPath(issue.path.dom);
